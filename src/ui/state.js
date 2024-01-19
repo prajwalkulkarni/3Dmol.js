@@ -186,7 +186,7 @@ $3Dmol.StateManager = (function(){
       ).then((surfParam)=>{
         surfaces[id] = surfParam[0];
 
-        if(callback != undefined)
+        if(callback !== undefined)
           callback(id, surfParam[0]);
       }, ()=>{
 
@@ -260,7 +260,7 @@ $3Dmol.StateManager = (function(){
             return false;
         });
   
-        if(atomExist != undefined )
+        if(atomExist !== undefined )
           atomExist = true;
         else 
           atomExist = false;
@@ -306,7 +306,7 @@ $3Dmol.StateManager = (function(){
           return false;
       });
 
-      if(atomExist != undefined )
+      if(atomExist !== undefined )
         atomExist = true;
       else 
         atomExist = false;
@@ -412,7 +412,7 @@ $3Dmol.StateManager = (function(){
 
         if( Object.keys(lookSelection).length === parameters.length){
           for(var j = 0; j < parameters.length; j++){
-            if( lookSelection[parameters[j]] != spec[parameters[j]]){
+            if( lookSelection[parameters[j]] !== spec[parameters[j]]){
               match = false;
               break;
             }
@@ -450,7 +450,7 @@ $3Dmol.StateManager = (function(){
 
       var styleId = null;
 
-      if(Object.keys(styleSpec).length != 0){
+      if(Object.keys(styleSpec).length !== 0){
         styleId = this.addStyle(styleSpec, selId);
       }
 
