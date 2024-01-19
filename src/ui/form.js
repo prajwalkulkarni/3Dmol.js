@@ -128,7 +128,7 @@ $3Dmol.UI.Form = (function () {
 
         this.setValue = function (colorValue) {
 
-            if (colorValue == 'spectrum') {
+            if (colorValue === 'spectrum') {
                 spectrum.setValue(true);
                 spectrum.update(spectrumControl);
                 sliders.hide();
@@ -195,7 +195,7 @@ $3Dmol.UI.Form = (function () {
         // }
 
         this.validate = function () {
-            if (control.value == 'select' || control.value == null) {
+            if (control.value === 'select' || control.value === null) {
                 (this.showAlertBox) ? failMessage.show(): null;
                 select.css({
                     'box-shadow': '0px 0px 2px red'
@@ -211,7 +211,7 @@ $3Dmol.UI.Form = (function () {
         }
 
         this.setValue = function (val) {
-            if (listElements.indexOf(val) != -1) {
+            if (listElements.indexOf(val) !== -1) {
                 select.empty();
                 var defaultOption = $('<option></option>');
                 defaultOption.text('select');
@@ -222,7 +222,7 @@ $3Dmol.UI.Form = (function () {
                     option.attr('value', item);
                     select.append(option);
 
-                    if (val == item) {
+                    if (val === item) {
                         option.prop('selected', true);
                     }
                 });
@@ -316,11 +316,11 @@ $3Dmol.UI.Form = (function () {
         }, (event) => {
             let inputString = input.val();
 
-            if (inputString[inputString.length - 1] == ',') {
+            if (inputString[inputString.length - 1] === ',') {
                 inputString = inputString.slice(0, -1);
             }
 
-            if (validationType == 'range') {
+            if (validationType === 'range') {
                 control.value = inputString.split(',');
             } else {
                 control.value = inputString;
@@ -346,7 +346,7 @@ $3Dmol.UI.Form = (function () {
 
         this.setValue = function (val) {
 
-            if (validationType == 'range') {
+            if (validationType === 'range') {
                 var text = val.join(',');
                 input.val(text);
             } else {
@@ -368,7 +368,7 @@ $3Dmol.UI.Form = (function () {
                 return false
             }
 
-            if (checkString != '') return false;
+            if (checkString !== '') return false;
 
             if (isNaN(parseFloat(inputString))) {
                 return false;
@@ -382,7 +382,7 @@ $3Dmol.UI.Form = (function () {
 
             var checkString = inputString.replaceAll(/[0-9]/g, '');
 
-            if (checkString != '') return false;
+            if (checkString !== '') return false;
 
             if (isNaN(parseInt(inputString))) {
                 return false;
@@ -397,7 +397,7 @@ $3Dmol.UI.Form = (function () {
         function checkRangeTokens(inputString) {
             var finalString = inputString.replaceAll(',', '').replaceAll('-', '').replaceAll(/[0-9]/g, '').replaceAll(' ', '');
 
-            if (finalString == '')
+            if (finalString === '')
                 return true;
             else
                 return false;
@@ -406,7 +406,7 @@ $3Dmol.UI.Form = (function () {
         function checkList(inputString) {
             inputString = inputString.replaceAll(' ', '');
 
-            if (inputString[inputString.length - 1] == ',') {
+            if (inputString[inputString.length - 1] === ',') {
                 inputString = inputString.slice(0, -1);
             }
 
@@ -424,8 +424,8 @@ $3Dmol.UI.Form = (function () {
             });
 
             return validRangeList.find((e) => {
-                return e == false
-            }) == undefined ? true : false;
+                return e === false
+            }) === undefined ? true : false;
         }
 
         function checkRangeInput(inputString) {
@@ -433,14 +433,14 @@ $3Dmol.UI.Form = (function () {
             if (rangeInputs.length > 2) {
                 return false;
             } else {
-                if (rangeInputs.length == 0) {
+                if (rangeInputs.length === 0) {
                     return true;
-                } else if (rangeInputs.length == 1) {
+                } else if (rangeInputs.length === 1) {
                     if (isNaN(parseInt(rangeInputs[0])))
                         return false;
                     else
                         return true;
-                } else if (rangeInputs.length == 2) {
+                } else if (rangeInputs.length === 2) {
                     if (isNaN(parseInt(rangeInputs[0])) || isNaN(parseInt(rangeInputs[1])))
                         return false;
                     else
@@ -453,7 +453,7 @@ $3Dmol.UI.Form = (function () {
         var checkInput = this.checkInput = function () {
             var inputString = input.val();
 
-            if (validationType == 'number') {
+            if (validationType === 'number') {
                 if (checkInputNumber()) {
                     alertBox.hide();
                     return true;
@@ -461,7 +461,7 @@ $3Dmol.UI.Form = (function () {
                     error(alertMessage['invalid-input']);
                     return false;
                 }
-            } else if (validationType == 'float') {
+            } else if (validationType === 'float') {
                 if (checkInputFloat()) {
                     alertBox.hide();
                     return true;
@@ -469,7 +469,7 @@ $3Dmol.UI.Form = (function () {
                     error(alertMessage['invalid-input']);
                     return false;
                 }
-            } else if (validationType == 'range') {
+            } else if (validationType === 'range') {
                 if (checkRangeTokens(inputString)) {
                     if (checkList(inputString)) {
                         alertBox.hide();
@@ -511,13 +511,13 @@ $3Dmol.UI.Form = (function () {
         }
 
         this.isEmpty = function () {
-            if (control.value == "") {
+            if (control.value === "") {
                 return true;
             }
         }
 
         this.validate = function () {
-            if ((control.active == true && control.value != null && control.value != "" && checkInput()) || (control.active == false)) {
+            if ((control.active === true && control.value !== null && control.value !== "" && checkInput()) || (control.active === false)) {
                 input.css('box-shadow', 'none');
                 return true
             } else {
@@ -766,7 +766,7 @@ $3Dmol.UI.Form = (function () {
             });
 
 
-            if (validations.find(e => e == false) == undefined)
+            if (validations.find(e => e === false) === undefined)
                 return true;
             else {
                 return false;
@@ -778,7 +778,7 @@ $3Dmol.UI.Form = (function () {
             var keys = Object.keys(val);
             for (var i = 0; i < keys.length; i++) {
                 var input = inputs.find((e) => {
-                    if (e.control.key == keys[i])
+                    if (e.control.key === keys[i])
                         return e;
                 });
 
@@ -816,14 +816,14 @@ $3Dmol.UI.Form = (function () {
             });
 
 
-            if (specs[key].type == 'string' || specs[key].type == 'element') {
+            if (specs[key].type === 'string' || specs[key].type === 'element') {
                 this.placeholder = new Form.Input(control);
                 this.placeholder.ui.attr('type', 'text');
-            } else if (specs[key].type == 'number') {
+            } else if (specs[key].type === 'number') {
 
                 var slider = false;
 
-                if (specs[key].min != undefined && specs[key].max != undefined && specs[key].default != undefined) {
+                if (specs[key].min !== undefined && specs[key].max !== undefined && specs[key].default !== undefined) {
                     slider = true;
                 }
 
@@ -839,33 +839,33 @@ $3Dmol.UI.Form = (function () {
                     this.placeholder.ui.attr('type', 'text');
                     this.placeholder.validateOnlyNumber(specs[key].floatType);
                 }
-            } else if (specs[key].type == 'array_range') {
+            } else if (specs[key].type === 'array_range') {
                 this.placeholder = new Form.Input(control);
                 this.placeholder.ui.attr('type', 'text');
                 this.placeholder.validateInputRange();
-            } else if (specs[key].type == 'color') {
+            } else if (specs[key].type === 'color') {
                 this.placeholder = new Form.Color(control);
                 if (specs[key].spectrum) {
                     this.placeholder.enableSpectrum();
                 }
 
-            } else if (specs[key].type == 'boolean') {
+            } else if (specs[key].type === 'boolean') {
                 this.placeholder = new Form.Checkbox(control);
 
-            } else if (specs[key].type == 'properties') {
+            } else if (specs[key].type === 'properties') {
                 this.placeholder = new Form.Input(control);
                 this.placeholder.ui.attr('type', 'text');
 
-            } else if (specs[key].type == 'colorscheme') {
+            } else if (specs[key].type === 'colorscheme') {
                 this.placeholder = new Form.ListInput(control, Object.keys($3Dmol.builtinColorSchemes));
                 this.placeholder.ui.attr('type', 'text');
 
-            } else if (specs[key].type == undefined) {
+            } else if (specs[key].type === undefined) {
                 if (specs[key].validItems) {
                     this.placeholder = new Form.ListInput(control, specs[key].validItems);
                 }
 
-            } else if (specs[key].type == 'form') {
+            } else if (specs[key].type === 'form') {
                 this.placeholder = new Form(specs[key].validItems, control);
                 this.placeholder.ui.append($('<div></div>').css($3Dmol.defaultCSS.LinkBreak));
             } else {
@@ -885,7 +885,7 @@ $3Dmol.UI.Form = (function () {
             // Adding active control for the property
             var placeholder = this.placeholder;
 
-            if (type != 'boolean') {
+            if (type !== 'boolean') {
                 placeholder.ui.hide();
                 boundingBox.append(this.active.ui);
                 this.active.update = function (c) {

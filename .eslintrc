@@ -6,7 +6,8 @@
   "extends": ["eslint:recommended"],
   "ignorePatterns": ["**/vendor/*.js"],
   "rules": {
-    "no-prototype-builtins": "off"
+    "no-prototype-builtins": "off",
+    "eqeqeq" : ["error"]
   },
   "env": {
     "es6": true

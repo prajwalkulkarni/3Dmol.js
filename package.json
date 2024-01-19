@@ -43,7 +43,9 @@
     "generate:glcheck": "python3 ./tests/glcheck/generate_glcheck_render_tests.py -min",
     "generate:jest": "python3 tests/jest/generate_jest_render_tests.py",
     "cover": "npm run generate:jest && npx jest --coverage",
-    "doc": "rm -rf doc/ && npx jsdoc -c jsdoc.conf.json src doc.md"
+    "doc": "rm -rf doc/ && npx jsdoc -c jsdoc.conf.json src doc.md",
+    "lint": "eslint src/**/**/*.js",
+    "lint:fix": "eslint src/**/**/*.js --fix"
   },
   "dependencies": {
     "iobuffer": "^5.3.1",

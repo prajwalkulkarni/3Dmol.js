@@ -347,7 +347,7 @@ $3Dmol.UI = (function () {
       });
 
       boundingBox.on('keypress', function (e) {
-        if (e.key == 'Enter' || e.key == 'Return') {
+        if (e.key === 'Enter' || e.key === 'Return') {
           submitButton.ui.trigger('click')
         }
       });
@@ -396,10 +396,10 @@ $3Dmol.UI = (function () {
       alertBox.ui.css('width', 162);
 
       // CSS
-      if (side == 'left') {
+      if (side === 'left') {
         selectionBox.css('text-align', 'left');
       }
-      else if (side == 'right') {
+      else if (side === 'right') {
         selectionBox.css('text-align', 'right');
       }
       else {
@@ -576,14 +576,14 @@ $3Dmol.UI = (function () {
             selectionSpecForm.getValue();
             var checkAtoms = stateManager.checkAtoms(selectionFormControl.value);
 
-            if (Object.keys(selectionFormControl.value).length == 0) {
+            if (Object.keys(selectionFormControl.value).length === 0) {
               alertBox.error('Please enter some input');
             }
             else {
               if (checkAtoms) {
                 var id = stateManager.addSelection(selectionFormControl.value, sid);
                 finalizeSelection(id);
-                if (sid == null) _editingForm = false;
+                if (sid === null) _editingForm = false;
               }
               else {
                 alertBox.error('No atom selected');
@@ -601,7 +601,7 @@ $3Dmol.UI = (function () {
         }
 
         submit.ui.on('click', () => {
-          if (controls.editMode == false) {
+          if (controls.editMode === false) {
             if (allControl.value) {
               let id = stateManager.addSelection({});
               finalizeSelection(id);
@@ -640,7 +640,7 @@ $3Dmol.UI = (function () {
 
 
         boundingBox.on('keyup', (e) => {
-          if (e.key == 'Enter') {
+          if (e.key === 'Enter') {
             submit.ui.trigger('click');
           }
         });
@@ -653,7 +653,7 @@ $3Dmol.UI = (function () {
          */
         this.setProperty = function (id, specs) {
           // check for all selection
-          if (Object.keys(specs).length == 0) {
+          if (Object.keys(specs).length === 0) {
             allCheckBox.setValue(true)
           } else {
             selectionSpecForm.setValue(specs);
@@ -713,12 +713,12 @@ $3Dmol.UI = (function () {
         // Search selection with id 
         var selectionUI = selections.children('[data-id=' + id + ']');
 
-        if (selectionUI.length == 0) {
+        if (selectionUI.length === 0) {
           var selection = new Selection();
           selection.setProperty(id, selSpec);
           selections.append(selection.ui);
 
-          if (styleId != null) {
+          if (styleId !== null) {
             selection.addStyle(id, styleId, styleSpec);
           }
         }
@@ -770,10 +770,10 @@ $3Dmol.UI = (function () {
       showArea.append(addArea);
 
       // CSS
-      if (side == 'left') {
+      if (side === 'left') {
         styleBox.css('text-align', 'left');
       }
-      else if (side == 'right') {
+      else if (side === 'right') {
         styleBox.css('text-align', 'right');
       }
       else {
@@ -900,14 +900,14 @@ $3Dmol.UI = (function () {
           if (validate) {
             styleSpecForm.getValue();
 
-            if (Object.keys(styleFormControl.value).length == 0) {
+            if (Object.keys(styleFormControl.value).length === 0) {
 
               alertBox.error('Please enter some value');
             }
             else {
               var id = stateManager.addStyle(styleFormControl.value, sid, stid);
               finalizeStyle(id);
-              if (stid == null) _editingForm = false;
+              if (stid === null) _editingForm = false;
             }
 
           }
@@ -917,14 +917,14 @@ $3Dmol.UI = (function () {
         }
 
         submit.ui.on('click', () => {
-          if (controls.editMode == false) {
+          if (controls.editMode === false) {
             checkAndAddStyle();
           }
           else {
             var id = stid
             styleSpecForm.getValue();
 
-            if (Object.keys(styleFormControl.value).length == 0) {
+            if (Object.keys(styleFormControl.value).length === 0) {
               alertBox.error('Please enter some value');
             }
             else {
@@ -945,7 +945,7 @@ $3Dmol.UI = (function () {
         });
 
         boundingBox.on('keyup', (e) => {
-          if (e.key == 'Enter') {
+          if (e.key === 'Enter') {
             submit.ui.trigger('click');
           }
         });
@@ -999,7 +999,7 @@ $3Dmol.UI = (function () {
       var boundingBox = this.ui = $('<div></div>');
       config = config || {}
       var delay = config.delay || 5000;
-      var autohide = (config.autohide == undefined) ? true : config.autohide;
+      var autohide = (config.autohide === undefined) ? true : config.autohide;
 
       boundingBox.css({
         'font-family': 'Arial',
@@ -1165,7 +1165,7 @@ $3Dmol.UI = (function () {
 
         keyHolder.text(key);
 
-        if (typeof (value) == "number") {
+        if (typeof (value) === "number") {
           valueHolder.text(value.toFixed(2));
         } else {
           valueHolder.text(value.replace(/\^/g, ''));
@@ -1231,7 +1231,7 @@ $3Dmol.UI = (function () {
           var props = processPropertyList();
           var labelStyleValidation = stylesForLabel.validate();
 
-          if (props != null) {
+          if (props !== null) {
             if (labelStyleValidation) {
               stateManager.addAtomLabel(props, atom, stylesForLabel.getValue().value);
               stateManager.exitContextMenu(false);
@@ -1385,7 +1385,7 @@ $3Dmol.UI = (function () {
         });
 
         addLabelForm.on('keyup', (e) => {
-          if (e.key == 'Enter') {
+          if (e.key === 'Enter') {
             tick.ui.trigger('click');
           }
         });
@@ -1411,7 +1411,7 @@ $3Dmol.UI = (function () {
           }
         });
 
-        if (Object.keys(propsForLabel).length != 0) {
+        if (Object.keys(propsForLabel).length !== 0) {
           return propsForLabel
         }
         else {
@@ -1453,7 +1453,7 @@ $3Dmol.UI = (function () {
         alertBox.ui.hide();
         addLabelMenu.hide();
 
-        if (stateManager.getSelectionList().length == 0) {
+        if (stateManager.getSelectionList().length === 0) {
           alertBox.message('Please create selections before adding label');
         } else {
           addLabelMenu.show();
@@ -1483,7 +1483,7 @@ $3Dmol.UI = (function () {
       this.hide = function (processContextMenu) {
         if (processContextMenu) {
           var propsForLabel = processPropertyList();
-          if (propsForLabel != null) {
+          if (propsForLabel !== null) {
             stateManager.addAtomLabel(propsForLabel, this.atom);
           }
         }
@@ -1699,11 +1699,11 @@ $3Dmol.UI = (function () {
         hintbox.hide();
 
         listSurfaceOf.update = function (control) {
-          if (control.value == 'self') {
+          if (control.value === 'self') {
             hintbox.show();
             hintbox.text(surfaceGeneratorDesc['self']);
           }
-          else if (control.value == 'all') {
+          else if (control.value === 'all') {
             hintbox.show();
             hintbox.text(surfaceGeneratorDesc['all']);
           }
@@ -1752,7 +1752,7 @@ $3Dmol.UI = (function () {
         editButton.ui.on('click', function () {
           surfacePropertyBox.toggle();
 
-          // After creation of the surface box all the changes will be edit to the surfaces so on first submit toolButtons.editMode == true;
+          // After creation of the surface box all the changes will be edit to the surfaces so on first submit toolButtons.editMode === true;
         });
 
         // Form Validation 
@@ -1831,7 +1831,7 @@ $3Dmol.UI = (function () {
 
         // Cancel Edit
         cancel.ui.on('click', {}, function () {
-          if (toolButtons.editMode == false) {
+          if (toolButtons.editMode === false) {
             surfaceBox.detach();
             surfaceBox.remove();
             _editingForm = false;
@@ -1843,7 +1843,7 @@ $3Dmol.UI = (function () {
         });
 
         surfaceBox.on('keyup', (e) => {
-          if (e.key == 'Enter') {
+          if (e.key === 'Enter') {
             submit.ui.trigger('click');
           }
         });
@@ -1966,26 +1966,26 @@ $3Dmol.UI = (function () {
         top: 0
       };
 
-      if (x_type == 'left') {
+      if (x_type === 'left') {
         c_position.left = padding + x_offset;
       }
-      else if (x_type == 'center') {
+      else if (x_type === 'center') {
         c_position.left = p_width / 2 - c_width / 2 + x_offset;
       }
-      else if (x_type == 'right') {
+      else if (x_type === 'right') {
         c_position.left = p_width - c_width - padding + x_offset;
       }
       else {
         c_position.left = x_offset + padding;
       }
 
-      if (y_type == 'top') {
+      if (y_type === 'top') {
         c_position.top = y_offset + padding;
       }
-      else if (y_type == 'center') {
+      else if (y_type === 'center') {
         c_position.top = p_height / 2 - c_height / 2 + y_offset;
       }
-      else if (y_type == 'bottom') {
+      else if (y_type === 'bottom') {
         c_position.top = p_height - c_height - y_offset - padding;
       }
       else {
@@ -1999,7 +1999,7 @@ $3Dmol.UI = (function () {
     function getRect(container) {
       let div = container[0];
       let rect = div.getBoundingClientRect();
-      if (rect.width == 0 && rect.height == 0 && div.style.display === 'none') {
+      if (rect.width === 0 && rect.height === 0 && div.style.display === 'none') {
         let oldpos = div.style.position;
         let oldvis = div.style.visibility;
         div.style.display = 'block';
@@ -2078,11 +2078,11 @@ $3Dmol.UI = (function () {
 
 
       // setting up tool tip
-      if (tooltipText != null) {
+      if (tooltipText !== null) {
         button.attr('title', tooltipText);
       }
 
-      if (hoverable == 'true') {
+      if (hoverable === 'true') {
         button.on('mouseenter',
           () => {
             button.css('box-shadow', '0px 0px 3px black');

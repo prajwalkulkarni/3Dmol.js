@@ -54,7 +54,7 @@ $3Dmol.StateManager = (function(){
         hidden : false
       };
 
-      if(sid == null)
+      if(sid === null)
         selections[id] = selectionSpec;
       else 
         selections[id].spec = selectionSpec.spec;
@@ -117,7 +117,7 @@ $3Dmol.StateManager = (function(){
       
       var id = null; 
       
-      if(stid == null) {
+      if(stid === null) {
         id = makeid(4);
         selection.styles[id] = styleSpec
       }
@@ -170,12 +170,12 @@ $3Dmol.StateManager = (function(){
       property.id = id;
 
       var style = property.surfaceStyle.value;
-      if(style == null)
+      if(style === null)
         style = {};
 
-      var sel = (property.surfaceFor.value == 'all') ? { spec : {} } : selections[property.surfaceFor.value];
+      var sel = (property.surfaceFor.value === 'all') ? { spec : {} } : selections[property.surfaceFor.value];
 
-      var generatorAtom = (property.surfaceOf.value == 'self')? sel.spec : {};
+      var generatorAtom = (property.surfaceOf.value === 'self')? sel.spec : {};
 
 
       glviewer.addSurface(
@@ -216,8 +216,8 @@ $3Dmol.StateManager = (function(){
     this.editSurface = function(surfaceProperty){
       var style = surfaceProperty.surfaceStyle.value || {}
 
-      var sel = (surfaceProperty.surfaceFor.value == 'all') ? { spec : {} } : selections[surfaceProperty.surfaceFor.value];
-      var generatorAtom = (surfaceProperty.surfaceOf.value == 'self')? sel.spec : {};
+      var sel = (surfaceProperty.surfaceFor.value === 'all') ? { spec : {} } : selections[surfaceProperty.surfaceFor.value];
+      var generatorAtom = (surfaceProperty.surfaceOf.value === 'self')? sel.spec : {};
 
       glviewer.removeSurface(surfaces[surfaceProperty.id]);
 
@@ -254,7 +254,7 @@ $3Dmol.StateManager = (function(){
 
       if(atom){
         atomExist = Object.keys(atomLabel).find((i)=>{
-          if (i == atom.index)
+          if (i === atom.index)
             return true;
           else 
             return false;
@@ -300,7 +300,7 @@ $3Dmol.StateManager = (function(){
      */
     this.addAtomLabel = function(labelValue, atom, styleName='milk'){
       var atomExist = Object.keys(atomLabel).find((i)=>{
-        if (i == atom.index)
+        if (i === atom.index)
           return true;
         else 
           return false;
@@ -410,7 +410,7 @@ $3Dmol.StateManager = (function(){
         // looking for same parameters length 
         var parameters = Object.keys(spec);
 
-        if( Object.keys(lookSelection).length == parameters.length){
+        if( Object.keys(lookSelection).length === parameters.length){
           for(var j = 0; j < parameters.length; j++){
             if( lookSelection[parameters[j]] != spec[parameters[j]]){
               match = false;
@@ -444,7 +444,7 @@ $3Dmol.StateManager = (function(){
 
       var selId = findSelectionBySpec(selSpec);
 
-      if(selId == null){
+      if(selId === null){
         selId = this.addSelection(selSpec);
       }
 
@@ -470,7 +470,7 @@ $3Dmol.StateManager = (function(){
     this.createSurface = function(surfaceType, sel, style, sid){
       var selId = findSelectionBySpec(sel);
       
-      if(selId == null){
+      if(selId === null){
         selId = this.addSelection();
 
       }
@@ -514,7 +514,7 @@ $3Dmol.StateManager = (function(){
     }
 
     canvas.on('click', ()=>{
-      if(this.ui && this.ui.tools.contextMenu.hidden == false){
+      if(this.ui && this.ui.tools.contextMenu.hidden === false){
         this.ui.tools.contextMenu.hide();
       }
     });
@@ -529,7 +529,7 @@ $3Dmol.StateManager = (function(){
       return ui;
     };
 
-    if(config.ui == true){
+    if(config.ui === true){
      this.ui = this.showUI(); 
     }
 
