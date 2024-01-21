@@ -1127,7 +1127,7 @@ export class GLModel {
                     } else testOpacities[j] = undefined;
 
                     if (opacities[j]) {
-                        if (testOpacities[j] !== undefined && opacities[j] !== testOpacities[j]) {
+                        if (testOpacities[j] != undefined && opacities[j] !== testOpacities[j]) {
                             console.log("Warning: " + j + " opacity is ambiguous");
                             opacities[j] = 1;
                         }
