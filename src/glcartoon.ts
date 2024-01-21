@@ -910,7 +910,7 @@ export function drawCartoon(group, atomList, gradientrange, quality = 10) {
     for (var g in Gradient.builtinGradients) {
         if (Gradient.builtinGradients.hasOwnProperty(g)) {
             //COUNTER INTUITIVE - spectrum reverses direction to gradient to match other tools
-            gradients[g] = new Gradient.builtinGradients[g](gradientrange[1], gradientrange[0]);
+            gradients[g] = new Gradient.builtinGradients[g](gradientrange?.[1], gradientrange?.[0]);
         }
     }
 
