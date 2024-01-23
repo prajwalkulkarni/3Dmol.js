@@ -13,11 +13,11 @@ export function computeSecondaryStructure(atomsarray: Array<AtomSpec>, hbondCuto
   for (i = 0, il = atomsarray.length; i < il; i++) {
     atom = atomsarray[i];
 
-    if (chres[atom.chain] === undefined) chres[atom.chain] = [];
+    if (typeof chres[atom.chain] === "undefined") chres[atom.chain] = [];
 
     if (isFinite(atom.hbondDistanceSq)) {
       const other = atom.hbondOther;
-      if (chres[other.chain] === undefined) chres[other.chain] = [];
+      if (typeof chres[other.chain] === "undefined") chres[other.chain] = [];
 
       if (Math.abs(other.resi - atom.resi) === 4) {
         // helix
