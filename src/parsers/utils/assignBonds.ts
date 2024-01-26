@@ -35,7 +35,7 @@ export function assignBonds(atoms: AtomSpec[]) {
         z: AtomSpec[];
       };
     };
-  };
+  }={x:{y:{z:[]}}};
 
   for (let index = 0; index < atoms.length; index++) {
     const atom = atoms[index];
