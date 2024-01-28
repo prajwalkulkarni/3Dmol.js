@@ -1,6 +1,6 @@
 //a collection of miscellaneous utility functions
 
-import { NCBI_PUBCHEM_URL, RCSB_FILES_URL, RCSB_MMTF_URL } from "URLs";
+import { NCBI_PUBCHEM_URL, RCSB_FILES_URL, RCSB_MMTF_URL } from "./URLs";
 import { builtinGradients, Gradient } from "./Gradient";
 import { VolumeData } from "./VolumeData";
 import { builtinColorSchemes, CC, elementColors, htmlColors, Color } from "./colors";
