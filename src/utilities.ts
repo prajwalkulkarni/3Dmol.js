@@ -403,6 +403,8 @@ export function getbin(uri:string, callback?, request?: RequestMethod, postdata?
     });
  */
 export function download(query, viewer, options, callback?) {
+
+    if(isRequestProcessing) return alert("Request already processing, please wait");
     var type = "";
     var pdbUri = "";
     var mmtfUri = "";
@@ -410,14 +412,10 @@ export function download(query, viewer, options, callback?) {
     var promise = null;
     var m = viewer.addModel();
 
-    if(isRequestProcessing){
-        alert("Request already processing, please wait");
-        return;
-    }
 
     if (query.indexOf(':') < 0) {
         //no type specifier, guess
-        if (query.length == 4) {
+        if (query.length === 4) {
             query = 'pdb:' + query;
         } else if (!isNaN(query)) {
             query = 'cid:' + query;
@@ -460,7 +458,7 @@ export function download(query, viewer, options, callback?) {
                 alert("Wrong PDB ID");
                 return;
             }
-            if (type == 'mmtf') {
+            if (type === 'mmtf') {
                 mmtfUri = options && options.mmtfUri ? options.mmtfUri : RCSB_MMTF_URL;
                 uri = mmtfUri + query.toUpperCase();
             }
@@ -469,7 +467,7 @@ export function download(query, viewer, options, callback?) {
                 uri = pdbUri + query + "." + type;
             }
 
-        } else if (query.substring(0, 4) == 'cid:') {
+        } else if (query.substring(0, 4) === 'cid:') {
             type = "sdf";
             query = query.substring(4);
             if (!query.match(/^[0-9]+$/)) {
@@ -489,7 +487,7 @@ export function download(query, viewer, options, callback?) {
         };
         isRequestProcessing = true;
         promise = new Promise(function (resolve) {
-            if (type == 'mmtf') { //binary data
+            if (type === 'mmtf') { //binary data
                 getbin(uri)
                     .then(function (ret) {
                         handler(ret);
